@@ -1,7 +1,6 @@
 package com.traveldestination.planner.common.respository.facade;
 
 import com.traveldestination.planner.common.model.entity.FavoriteDestinationsEntity;
-import com.traveldestination.planner.common.model.entity.UserEntity;
 import com.traveldestination.planner.common.respository.jpa.FavoriteDestinationsRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -29,7 +28,7 @@ public class FavoriteDestinationsRepositoryFacade {
         }
     }
 
-    public void delete(String country) {
+    public void deleteByCountry(String country) {
         try {
             repository.deleteByCountry(country);
 
@@ -37,9 +36,20 @@ public class FavoriteDestinationsRepositoryFacade {
             throw new RuntimeException("Failed to delete favorite destination for country: " + country, e);
         }
     }
-    private UserEntity toUser(Long userId) {
-        UserEntity user = new UserEntity();
-        user.setId(userId);
-        return user;
+
+    public void deleteAll(List<FavoriteDestinationsEntity> entities) {
+        try {
+            repository.deleteAll(entities);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to delete favorite destinations", e);
+        }
+    }
+
+    public void saveAll(List<FavoriteDestinationsEntity> entities) {
+        try {
+            repository.saveAll(entities);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to save favorite destinations", e);
+        }
     }
 }

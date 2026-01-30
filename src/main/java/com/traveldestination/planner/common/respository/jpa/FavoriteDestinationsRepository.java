@@ -2,7 +2,6 @@ package com.traveldestination.planner.common.respository.jpa;
 
 import com.traveldestination.planner.common.model.entity.FavoriteDestinationsEntity;
 import com.traveldestination.planner.common.model.entity.FavoriteDestinationsId;
-import com.traveldestination.planner.common.model.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

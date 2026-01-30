@@ -1,6 +1,8 @@
 package com.traveldestination.planner.user.mapper;
 
 import com.traveldestination.planner.client.RestCountryResponse;
+import com.traveldestination.planner.common.model.entity.FavoriteDestinationsEntity;
+import com.traveldestination.planner.user.model.request.ManageFavoriteDestinationRequest;
 import com.traveldestination.planner.user.model.response.Destination;
 import org.springframework.stereotype.Component;
 
@@ -40,6 +42,21 @@ public class UserMapper {
             return capitalList.get(0);
         }
         return null;
+    }
+
+    public FavoriteDestinationsEntity map(long userId, ManageFavoriteDestinationRequest request) {
+        if (request == null) {
+            return null;
+        }
+        return FavoriteDestinationsEntity.builder()
+                .userId(userId)
+                .flag(request.getFlagUrl())
+                .capital(request.getCapital())
+                .country(request.getCountry())
+                .currency(request.getCurrency())
+                .population(request.getPopulation())
+                .region(request.getRegion())
+                .build();
     }
 
 

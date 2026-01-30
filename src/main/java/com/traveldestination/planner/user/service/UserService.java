@@ -6,6 +6,7 @@ import com.traveldestination.planner.common.model.entity.FavoriteDestinationsEnt
 import com.traveldestination.planner.common.respository.facade.ApprovedDestinationsRepositoryFacade;
 import com.traveldestination.planner.common.respository.facade.FavoriteDestinationsRepositoryFacade;
 import com.traveldestination.planner.user.mapper.UserMapper;
+import com.traveldestination.planner.user.model.request.ManageFavoriteDestinationRequest;
 import com.traveldestination.planner.user.model.response.Destination;
 import com.traveldestination.planner.user.model.response.GetApprovedDestinationsResponse;
 import com.traveldestination.planner.user.model.response.GetUserUnApprovedDestinationsResponse;
@@ -44,16 +45,6 @@ public class UserService {
         //call client to get all destinations
         List<Destination> allDestinations = getAllDestinations();
 
-//        System.out.println(allDestinations.size());
-//        for (Destination destination : allDestinations) {
-//            System.out.println(destination.getCountry());
-//            System.out.println(destination.getCapital());
-//            System.out.println(destination.getRegion());
-//            System.out.println(destination.getPopulation());
-//            System.out.println(destination.getCurrency());
-//            System.out.println(destination.getFlagUrl());
-//            System.out.println("-------------------");
-//        }
         //build response
         Map<String, Boolean> userFavoritesMap =
                 getUserFavoriteDestinationsMap(getUserFavorites);
@@ -108,5 +99,24 @@ public class UserService {
                                 app -> true
                         )
                 );
+    }
+
+    public void manageFavoriteDestinations(Long userId, List<ManageFavoriteDestinationRequest> countryList) {
+
+        List<FavoriteDestinationsEntity> toBeAdded = new ArrayList<>();
+        List<FavoriteDestinationsEntity> toBeRemoved = new ArrayList<>();
+
+        for (ManageFavoriteDestinationRequest request : countryList) {
+            if (request.isFav() && !request.isWasFav()) {
+                toBeAdded.add(userMapper.map(userId, request));
+            } else if (!request.isFav() && request.isWasFav()) {
+                toBeRemoved.add(userMapper.map(userId, request));
+            }
+        }
+
+        //perform db operations
+        favoriteDestinationsRepositoryFacade.deleteAll(toBeRemoved);
+        favoriteDestinationsRepositoryFacade.saveAll(toBeAdded);
+
     }
 }

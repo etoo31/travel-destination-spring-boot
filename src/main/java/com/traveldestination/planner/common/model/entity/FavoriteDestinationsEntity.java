@@ -1,10 +1,7 @@
 package com.traveldestination.planner.common.model.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
@@ -13,6 +10,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "favorite_destinations")
 @IdClass(FavoriteDestinationsId.class)
+@Builder
 public class FavoriteDestinationsEntity {
 
     @Id
