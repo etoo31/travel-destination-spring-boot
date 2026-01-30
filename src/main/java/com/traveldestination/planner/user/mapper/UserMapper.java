@@ -1,4 +1,4 @@
-package com.traveldestination.planner.user;
+package com.traveldestination.planner.user.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
