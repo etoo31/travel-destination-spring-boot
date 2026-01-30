@@ -18,10 +18,12 @@ public class UserController {
 
 
     @GetMapping("/approved-destinations")
-    public GetApprovedDestinationsResponse getUserFavoriteDestinations(
+    public GetApprovedDestinationsResponse getApprovedDestinations(
             @RequestHeader(USER_ID) Long userId) {
 
         return userService.getApprovedDestinations(userId);
     }
+
+
 
 }
