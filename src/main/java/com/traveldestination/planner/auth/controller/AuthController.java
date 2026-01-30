@@ -55,6 +55,9 @@ public class AuthController {
         Optional<UserEntity> optionalUser = userRepository.findFirstByUsername(userDetails.getUsername());
         final String jwt = jwtUtil.generateToken(userDetails.getUsername());
         if (optionalUser.isPresent()) {
+            if (authenticationRequest.getRole().equalsIgnoreCase(optionalUser.get().getRole()) == false) {
+                throw new BadCredentialsException("Incorrect username or password.");
+            }
             response.getWriter().write(new JSONObject()
                     .put("userId", optionalUser.get().getId())
                     .put("role", optionalUser.get().getRole())

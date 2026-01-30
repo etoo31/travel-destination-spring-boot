@@ -16,7 +16,7 @@ import java.util.function.Function;
 
 @Component
 public class JwtUtil {
-    public static final String SECRET = "mJt4E5l3oLk0v7cQxWl9k2p7fQ8b0mVtQy2p9n4sZ0E=";
+    public static final String SECRET = "39231f1250da8a52760e3a853decd11057125851";
 
 
     public String generateToken (String userName) {
