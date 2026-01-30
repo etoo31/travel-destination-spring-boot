@@ -1,16 +1,23 @@
 package com.traveldestination.planner.user.model.response;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.List;
 
 @Data
 @Builder
-public class GetAllDestinationsResponse {
+public class Destination {
 
-    @JsonProperty("body")
-    private List<GetAllDestinationsResponseBody> body;
+    private String country;
+
+    private String capital;
+
+    private String region;
+
+    private Long population;
+
+    private String currency;
+
+    private String flagUrl;
 
 }

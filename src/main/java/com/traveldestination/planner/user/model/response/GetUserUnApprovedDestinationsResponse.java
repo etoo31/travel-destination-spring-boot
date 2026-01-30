@@ -4,20 +4,34 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 
+
 @Data
 @Builder
-public class GetUserUnApprovedDestinations {
+public class GetUserUnApprovedDestinationsResponse {
 
-    @JsonProperty("destinations")
-    export class UnApprovedDestinations {
-        flagUrl: string = '';
-        country: string = '';
-        capital: string = '';
-        region: string = '';
-        population: number = 0;
-        currency: string = '';
-        wasFav: boolean = false;
-        isFav: boolean = false;
-    }
+    @JsonProperty("country")
+    private String country;
+
+    @JsonProperty("capital")
+    private String capital;
+
+    @JsonProperty("region")
+    private String region;
+
+    @JsonProperty("population")
+    private Long population;
+
+    @JsonProperty("currency")
+    private String currency;
+
+    @JsonProperty("flagUrl")
+    private String flagUrl;
+
+    @JsonProperty("wasFav")
+    private boolean wasFav;
+
+    @JsonProperty("isFav")
+    private boolean isFav;
+
 
 }
