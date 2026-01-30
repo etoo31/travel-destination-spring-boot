@@ -16,9 +16,7 @@ import lombok.Setter;
 public class FavoriteDestinationsEntity {
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    private UserEntity user;
+    private Long userId;
 
     @Id
     @Column(nullable = false, unique = true)

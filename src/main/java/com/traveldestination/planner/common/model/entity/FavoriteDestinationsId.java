@@ -12,6 +12,6 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class FavoriteDestinationsId implements Serializable {
-    private Long user;
+    private Long userId;
     private String country;
 }
