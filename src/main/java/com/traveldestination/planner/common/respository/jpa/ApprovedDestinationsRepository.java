@@ -4,4 +4,6 @@ import com.traveldestination.planner.common.model.entity.ApprovedDestinationsEnt
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ApprovedDestinationsRepository extends JpaRepository<ApprovedDestinationsEntity, Long> {
+
+     void deleteByCountry(String country);
 }

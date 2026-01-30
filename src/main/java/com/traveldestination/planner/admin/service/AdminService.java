@@ -3,10 +3,14 @@ package com.traveldestination.planner.admin.service;
 import com.traveldestination.planner.admin.mapper.AdminMapper;
 import com.traveldestination.planner.common.model.Destination;
 import com.traveldestination.planner.common.model.entity.ApprovedDestinationsEntity;
+import com.traveldestination.planner.common.model.entity.FavoriteDestinationsEntity;
 import com.traveldestination.planner.common.respository.facade.ApprovedDestinationsRepositoryFacade;
 import com.traveldestination.planner.common.respository.facade.FavoriteDestinationsRepositoryFacade;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -22,6 +26,26 @@ public class AdminService {
         ApprovedDestinationsEntity approvedDestinationsEntity = adminMapper.map(destination);
 
         approvedDestinationsRepositoryFacade.save(approvedDestinationsEntity);
+    }
 
+    public void approveMultipleDestinations(long userId, List<Destination> destinations) {
+        // Remove from favorite destinations if exists
+        List<FavoriteDestinationsEntity> favoriteEntities = new ArrayList<>();
+        for (Destination destination : destinations) {
+            favoriteEntities.add(adminMapper.mapDestinationToFavoriteDestinationsEntity(destination));
+        }
+        favoriteDestinationsRepositoryFacade.deleteAll(favoriteEntities);
+
+        // Add to approved destinations
+        List<ApprovedDestinationsEntity> entitiesToApprove = destinations.stream()
+                .map(adminMapper::map)
+                .toList();
+
+        approvedDestinationsRepositoryFacade.saveAll(entitiesToApprove);
+    }
+
+    public void removeDestination(long userId, Destination destination) {
+        // Remove from approved destinations if exists
+        approvedDestinationsRepositoryFacade.deleteByCountry(destination.getCountry());
     }
 }

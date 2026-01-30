@@ -5,6 +5,8 @@ import com.traveldestination.planner.common.model.Destination;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static com.traveldestination.planner.common.Constant.HttpConstant.USER_ID;
 
 @RestController
@@ -21,5 +23,22 @@ public class AdminController {
             ) {
 
         adminService.approveDestination(userId, destination);
+    }
+
+    @PostMapping("/approve-multiple-destinations")
+    public void approveMultipleDestinations(
+            @RequestHeader(USER_ID) long userId,
+            @RequestBody List<Destination> destinations
+    ) {
+
+        adminService.approveMultipleDestinations(userId, destinations);
+    }
+
+    @PostMapping("/remove-destination")
+    public void removeDestination(
+            @RequestHeader(USER_ID) long userId,
+            @RequestBody Destination destination
+    ) {
+        adminService.removeDestination(userId, destination);
     }
 }

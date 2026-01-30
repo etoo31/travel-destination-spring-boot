@@ -2,6 +2,7 @@ package com.traveldestination.planner.common.respository.facade;
 
 import com.traveldestination.planner.common.model.entity.ApprovedDestinationsEntity;
 import com.traveldestination.planner.common.respository.jpa.ApprovedDestinationsRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -27,6 +28,24 @@ public class ApprovedDestinationsRepositoryFacade {
             repository.save(entity);
         } catch (Exception e){
             throw new RuntimeException("Failed to save ApprovedDestinationsEntity", e);
+        }
+    }
+
+    public void saveAll(List<ApprovedDestinationsEntity> entities) {
+        try{
+            repository.saveAll(entities);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to save ApprovedDestinationsEntity", e);
+        }
+    }
+
+    @Transactional
+    public void deleteByCountry(String country) {
+        try {
+            repository.deleteByCountry(country);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to delete approved destination for country: " + country, e);
         }
     }
 
