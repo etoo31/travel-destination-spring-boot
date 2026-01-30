@@ -1,7 +1,8 @@
 package com.traveldestination.planner.user.service;
 
+import com.traveldestination.planner.common.respository.facade.ApprovedDestinationsRepositoryFacade;
 import com.traveldestination.planner.common.respository.facade.FavoriteDestinationsRepositoryFacade;
-import com.traveldestination.planner.user.model.response.UserFavoriteDestination;
+import com.traveldestination.planner.user.model.response.GetApprovedDestinationsResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +12,12 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UserService {
     public final FavoriteDestinationsRepositoryFacade favoriteDestinationsRepositoryFacade;
-    public UserFavoriteDestination getUserFavoriteDestinations(Long userId) {
+    public final ApprovedDestinationsRepositoryFacade approvedDestinationsRepositoryFacade;
+    public GetApprovedDestinationsResponse getApprovedDestinations(Long userId) {
 
 
-        return UserFavoriteDestination.builder()
-                .favoriteDestinations(favoriteDestinationsRepositoryFacade.findByUserId(userId))
+        return GetApprovedDestinationsResponse.builder()
+                .approvedDestinationsEntityList(approvedDestinationsRepositoryFacade.findAll())
                 .build();
     }
 }

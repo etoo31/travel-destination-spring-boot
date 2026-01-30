@@ -1,7 +1,7 @@
 package com.traveldestination.planner.user.model.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.traveldestination.planner.common.model.entity.FavoriteDestinationsEntity;
+import com.traveldestination.planner.common.model.entity.ApprovedDestinationsEntity;
 import lombok.Builder;
 import lombok.Data;
 
@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 @Builder
-public class UserFavoriteDestination {
+public class GetApprovedDestinationsResponse {
     @JsonProperty("destinations")
-    List<FavoriteDestinationsEntity> favoriteDestinations;
+    List<ApprovedDestinationsEntity> approvedDestinationsEntityList;
 }

@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "approved_destinations")
+@Table(name = "approved_destination")
 public class ApprovedDestinationsEntity {
     @Id
     @Column(nullable = false, unique = true)
