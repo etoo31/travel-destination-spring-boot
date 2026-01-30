@@ -2,6 +2,7 @@ package com.traveldestination.planner.common.respository.facade;
 
 import com.traveldestination.planner.common.model.entity.FavoriteDestinationsEntity;
 import com.traveldestination.planner.common.respository.jpa.FavoriteDestinationsRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -28,6 +29,7 @@ public class FavoriteDestinationsRepositoryFacade {
         }
     }
 
+    @Transactional
     public void deleteByCountry(String country) {
         try {
             repository.deleteByCountry(country);
@@ -37,6 +39,7 @@ public class FavoriteDestinationsRepositoryFacade {
         }
     }
 
+    @Transactional
     public void deleteAll(List<FavoriteDestinationsEntity> entities) {
         try {
             repository.deleteAll(entities);

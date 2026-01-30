@@ -3,7 +3,7 @@ package com.traveldestination.planner.user.mapper;
 import com.traveldestination.planner.client.RestCountryResponse;
 import com.traveldestination.planner.common.model.entity.FavoriteDestinationsEntity;
 import com.traveldestination.planner.user.model.request.ManageFavoriteDestinationRequest;
-import com.traveldestination.planner.user.model.response.Destination;
+import com.traveldestination.planner.common.model.Destination;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

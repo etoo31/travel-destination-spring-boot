@@ -7,7 +7,7 @@ import com.traveldestination.planner.common.respository.facade.ApprovedDestinati
 import com.traveldestination.planner.common.respository.facade.FavoriteDestinationsRepositoryFacade;
 import com.traveldestination.planner.user.mapper.UserMapper;
 import com.traveldestination.planner.user.model.request.ManageFavoriteDestinationRequest;
-import com.traveldestination.planner.user.model.response.Destination;
+import com.traveldestination.planner.common.model.Destination;
 import com.traveldestination.planner.user.model.response.GetApprovedDestinationsResponse;
 import com.traveldestination.planner.user.model.response.GetUserUnApprovedDestinationsResponse;
 import lombok.AllArgsConstructor;
