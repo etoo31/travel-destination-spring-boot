@@ -1,6 +1,6 @@
 # 🌍 Travel Planner – Spring Boot Application
 
-This project is a **Spring Boot backend application** for a travel destination planner https://drive.google.com/file/d/1VqmdOwzAY3HJT7mYTBNYzC9xevIm5kUH/view?usp=sharing.  
+This project is a **Spring Boot backend application** for a travel destination planner [Demo Video](https://drive.google.com/file/d/1VqmdOwzAY3HJT7mYTBNYzC9xevIm5kUH/view?usp=sharing).  
 It uses **Spring Security**, **JPA**, **Flyway**, **MySQL**, and **JWT** for authentication and data management.
 
 ---
@@ -35,3 +35,29 @@ Before running the project, make sure you have:
 
 ```sql
 CREATE DATABASE travelplanner;
+```
+
+## Configure DataBase Credentials
+
+```
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/travelplanner
+    username: root
+    password: root
+```
+⚠️ Make sure the username and password match your local MySQL setup.
+
+---
+
+## ▶️ Running the Application
+Using Gradle Wrapper (Recommended)
+```
+./gradlew bootRun
+or 
+gradlew bootRun
+```
+
+
+
+
