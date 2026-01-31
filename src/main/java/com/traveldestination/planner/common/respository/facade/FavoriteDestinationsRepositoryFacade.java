@@ -1,11 +1,14 @@
 package com.traveldestination.planner.common.respository.facade;
 
+import com.traveldestination.planner.admin.model.CountryStatsDTO;
+import com.traveldestination.planner.admin.model.PendingDestinationResponse;
 import com.traveldestination.planner.common.model.entity.FavoriteDestinationsEntity;
 import com.traveldestination.planner.common.respository.jpa.FavoriteDestinationsRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -53,6 +56,14 @@ public class FavoriteDestinationsRepositoryFacade {
             repository.saveAll(entities);
         } catch (Exception e) {
             throw new RuntimeException("Failed to save favorite destinations", e);
+        }
+    }
+
+    public List<CountryStatsDTO> getPendingDestinations(){
+        try {
+            return repository.getPendingDestinations();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to fetch get pending destinations");
         }
     }
 }

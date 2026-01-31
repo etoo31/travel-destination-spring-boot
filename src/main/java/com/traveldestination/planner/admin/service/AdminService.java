@@ -1,6 +1,8 @@
 package com.traveldestination.planner.admin.service;
 
 import com.traveldestination.planner.admin.mapper.AdminMapper;
+import com.traveldestination.planner.admin.model.CountryStatsDTO;
+import com.traveldestination.planner.admin.model.PendingDestinationResponse;
 import com.traveldestination.planner.common.model.Destination;
 import com.traveldestination.planner.common.model.entity.ApprovedDestinationsEntity;
 import com.traveldestination.planner.common.model.entity.FavoriteDestinationsEntity;
@@ -47,5 +49,14 @@ public class AdminService {
     public void removeDestination(long userId, Destination destination) {
         // Remove from approved destinations if exists
         approvedDestinationsRepositoryFacade.deleteByCountry(destination.getCountry());
+    }
+
+    public List<PendingDestinationResponse> getPendingDestination(long userId) {
+        List<CountryStatsDTO> countryStatsDTOS
+                = favoriteDestinationsRepositoryFacade.getPendingDestinations();
+        List<PendingDestinationResponse> pendingDestinationResponses
+                = adminMapper.mapToPendingDestinationResponseList(countryStatsDTOS);
+
+        return pendingDestinationResponses;
     }
 }

@@ -1,5 +1,6 @@
 package com.traveldestination.planner.admin.controller;
 
+import com.traveldestination.planner.admin.model.PendingDestinationResponse;
 import com.traveldestination.planner.admin.service.AdminService;
 import com.traveldestination.planner.common.model.Destination;
 import lombok.AllArgsConstructor;
@@ -40,5 +41,12 @@ public class AdminController {
             @RequestBody Destination destination
     ) {
         adminService.removeDestination(userId, destination);
+    }
+
+    @GetMapping("/pending-destinations")
+    public List<PendingDestinationResponse> getPendingDestination(
+            @RequestHeader(USER_ID) long userId
+    ) {
+        return adminService.getPendingDestination(userId);
     }
 }
