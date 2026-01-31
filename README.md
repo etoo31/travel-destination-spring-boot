@@ -58,6 +58,10 @@ or
 gradlew bootRun
 ```
 
+---
+⚠️ Make sure the port 8080 is free to use.
+
+
 
 
 
